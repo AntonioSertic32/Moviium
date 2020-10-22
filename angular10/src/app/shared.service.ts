@@ -6,12 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SharedService {
-  readonly APIUrl = 'http://localhost:44358';
+  readonly APIUrl = 'https://localhost:44358';
 
   constructor(private http: HttpClient) {}
 
   getFilmList(): Observable<any[]> {
-    return this.http.get<any>(this.APIUrl + '/movies');
+    return this.http.get<any>(this.APIUrl + '/Movies/GetMovies');
   }
 
   addFilm(val: any) {

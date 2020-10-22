@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\asertic\\Downloads\\Moviium-main\\MoviesCoreAPI\\MoviesCoreAPI.csproj": {}
+    "E:\\asertic\\Downloads\\Moviium\\MoviesCoreAPI\\MoviesCoreAPI.csproj": {}
   },
   "projects": {
-    "E:\\asertic\\Downloads\\Moviium-main\\MoviesCoreAPI\\MoviesCoreAPI.csproj": {
+    "E:\\asertic\\Downloads\\Moviium\\MoviesCoreAPI\\MoviesCoreAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\asertic\\Downloads\\Moviium-main\\MoviesCoreAPI\\MoviesCoreAPI.csproj",
+        "projectUniqueName": "E:\\asertic\\Downloads\\Moviium\\MoviesCoreAPI\\MoviesCoreAPI.csproj",
         "projectName": "MoviesCoreAPI",
-        "projectPath": "E:\\asertic\\Downloads\\Moviium-main\\MoviesCoreAPI\\MoviesCoreAPI.csproj",
+        "projectPath": "E:\\asertic\\Downloads\\Moviium\\MoviesCoreAPI\\MoviesCoreAPI.csproj",
         "packagesPath": "C:\\Users\\asertic\\.nuget\\packages\\",
-        "outputPath": "E:\\asertic\\Downloads\\Moviium-main\\MoviesCoreAPI\\obj\\",
+        "outputPath": "E:\\asertic\\Downloads\\Moviium\\MoviesCoreAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\asertic\\AppData\\Roaming\\NuGet\\NuGet.Config",
