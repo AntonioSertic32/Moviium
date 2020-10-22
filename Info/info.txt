@@ -1,0 +1,29 @@
+orm - entity framework core https://www.learnentityframeworkcore.com/
+- core first approach - modeli -> baza (dbcontext selfwork) - migracije 
+- database first approach - baze -> modeli (.cs & dbcontext) - scaffold
+- linq
+
+-c# dependency injection
+
+-mvvm
+
+-swagger
+-postman
+
+-asp.net mvc
+-balzor webassembly (UI - razor components)
+
+
+
+create project with asp net core and angular 10 with sql server
+https://www.red-gate.com/simple-talk/dotnet/net-development/building-an-angularjs-application-with-asp-net-core/
+
+http://www.omdbapi.com/
+http://www.omdbapi.com/?apikey=a6623360&t=saw&plot=full
+
+https://www.entityframeworktutorial.net/efcore/create-model-for-existing-database-in-ef-core.aspx
+
+Antonio Sertic/FINA@FINA
+antonio.sertic@fina.hr
+
+https://medium.com/net-core/how-to-build-a-restful-api-with-asp-net-core-fb7dd8d3e5e3

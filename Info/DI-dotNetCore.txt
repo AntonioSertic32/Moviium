@@ -1,0 +1,12 @@
+dependency injection in .net core webapi
+
+	ConfigureServices method -> Startup.cs
+
+Kaj znači:?
+
+ -> addsingleton()
+ -> addtransient()
+ -> addscoped()
+
+
+https://www.youtube.com/watch?v=BPGtVpu81ek
