@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -10,7 +11,7 @@ using MoviesCoreAPI.ViewModel;
 
 namespace MoviesCoreAPI.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class RecordsController : ControllerBase
     {
@@ -29,15 +30,10 @@ namespace MoviesCoreAPI.Controllers
 
             foreach (var record in records)
             {
+                record.Movie = _context.Movies.Where(m => m.MovieID == record.MovieId).FirstOrDefault();
                 recordsVMs.Add(
-                    new RecordsViewModel()
-                        {
-                            RecordID = record.RecordID,
-                            Rate = record.Rate,
-                            Movie = _context.Movies.Where(m => m.MovieID == record.MovieId).FirstOrDefault(),
-                            User = record.User
-                        }
-                    );
+                    record
+                );
             }
 
             return recordsVMs;

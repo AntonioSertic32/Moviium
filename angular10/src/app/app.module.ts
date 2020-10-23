@@ -13,9 +13,10 @@ import { SharedService } from './shared.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
     FilmComponent,
     ShowFilmComponent,
@@ -23,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     KorisnikComponent,
     ShowKorisnikComponent,
     AddEditKorisnikComponent,
-  ],
+      LoginComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
