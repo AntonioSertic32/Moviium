@@ -28,6 +28,13 @@ namespace MoviesCoreAPI.Models
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Users>()
+                .HasIndex(p => new { p.Email, p.Username })
+                .IsUnique(true);
+        }
+
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Movies>(entity =>

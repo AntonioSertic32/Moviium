@@ -48,17 +48,31 @@ namespace MoviesCoreAPI.Controllers
         }
 
         // GET: /users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UsersViewModel>> GetUsers(int id)
+        [HttpGet("{password}/{email}")]
+        public async Task<ActionResult<UsersViewModel>> GetUsers(string password, string email)
         {
-            UsersViewModel users = await _context.Users.FindAsync(id);
+            var users = await _context.Users.ToListAsync();
 
-            if (users == null)
+            foreach (var user in users)
             {
-                return NotFound();
+                if (user.Password == password && user.Email == email)
+                {
+                    var usersVMs = new UsersViewModel()
+                    {
+                        UserID = user.UserID,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Password = user.Password,
+                        Username = user.Username,
+                        Email = user.Email,
+                    };
+
+                    return usersVMs;
+                }
+
             }
 
-            return users;
+            return NotFound();
         }
 
         // PUT: /users/5
