@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.Configuration;
 using MoviesCoreAPI.Models;
 using MoviesCoreAPI.ViewModel;
 
@@ -16,9 +21,11 @@ namespace MoviesCoreAPI.Controllers
     public class RecordsController : ControllerBase
     {
         private MovieContext _context { get; set; }
-        public RecordsController(MovieContext context)
+        private readonly IConfiguration _configuration;
+        public RecordsController(MovieContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         // GET: /records
@@ -72,19 +79,23 @@ namespace MoviesCoreAPI.Controllers
 
         // POST /records
         [HttpPost]
-        public async Task<ActionResult<Records>> PostRecords(int rate, int userid, int movieid)
+        public async Task<HttpResponseMessage> PostRecords([FromBody]RecordPostDTO recordPostDTO)
         {
-            Records record = new Records()
+            string sqlCustomerInsert = $"INSERT INTO Records (Rate,UserId,MovieId) Values ({recordPostDTO.Rate},{recordPostDTO.UserId},{recordPostDTO.MovieId});";
+            try
             {
-                Rate = rate,
-                MovieId = movieid,
-                UserId = userid
-            };
+                using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+                {
+                    var affectedRows = await connection.ExecuteAsync(sqlCustomerInsert);
+                }
 
-            _context.Records.Add(record);
-            await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
 
-            return CreatedAtAction("GetRecordByID", new { id = movieid }, record);
+            return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("Radi misko!", System.Text.Encoding.UTF8, "application/json") };
         }
 
         //PUT /records/5
