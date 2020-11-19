@@ -81,7 +81,7 @@ namespace MoviesCoreAPI.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> PostRecords([FromBody]RecordPostDTO recordPostDTO)
         {
-            string sqlCustomerInsert = $"INSERT INTO Records (Rate,UserId,MovieId) Values ({recordPostDTO.Rate},{recordPostDTO.UserId},{recordPostDTO.MovieId});";
+            string sqlCustomerInsert = $"INSERT INTO Records (MovieId,UserId,Rate) VALUES ({recordPostDTO.MovieId},{recordPostDTO.UserId},{recordPostDTO.Rate});";
             try
             {
                 using (var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
@@ -99,15 +99,13 @@ namespace MoviesCoreAPI.Controllers
         }
 
         //PUT /records/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecord(int id, [FromBody] Records record)
+        [HttpPut]
+        public async Task<IActionResult> PutRecord([FromBody] Records record)
         {
-            if (id != record.RecordID)
-            {
-                return BadRequest();
-            }
+            //_context.Entry(record).State = EntityState.Modified;
 
-            _context.Entry(record).State = EntityState.Modified;
+            _context.Records.Attach(record);
+            _context.Entry(record).Property(x => x.Rate).IsModified = true;
 
             try
             {
@@ -115,7 +113,7 @@ namespace MoviesCoreAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if(GetRecordByID(id) != null)
+                if(GetRecordByID(record.RecordID) != null)
                 {
                     return NotFound();
                 }

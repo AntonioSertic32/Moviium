@@ -1,16 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { KorisnikComponent } from './korisnik/korisnik.component';
-import { FilmComponent } from './film/film.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { DiscoverComponent } from './components/home/discover/discover.component';
+import { MyListComponent } from './components/home/my-list/my-list.component';
+
+import { AuthGuard } from './auth.guard';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
-  { path: 'korisnik', component: KorisnikComponent },
-  { path: 'film', component: FilmComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LogInComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', redirectTo: 'discover', pathMatch: 'full' },
+      { path: 'discover', component: DiscoverComponent },
+      { path: 'mylist', component: MyListComponent },
+    ],
+  },
+  { path: '**', component: PagenotfoundComponent },
 ];
 
 @NgModule({

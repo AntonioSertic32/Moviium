@@ -47,7 +47,7 @@ namespace MoviesCoreAPI
             opt => opt.SwaggerDoc("v1",
             new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Movies", Version = "v1" }));
 
-            services.AddSingleton<MovieContext>();
+            services.AddScoped<MovieContext>();
 
  
         }

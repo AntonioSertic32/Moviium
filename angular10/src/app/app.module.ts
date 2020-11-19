@@ -1,41 +1,43 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FilmComponent } from './film/film.component';
-import { ShowFilmComponent } from './film/show-film/show-film.component';
-import { AddEditFilmComponent } from './film/add-edit-film/add-edit-film.component';
-import { KorisnikComponent } from './korisnik/korisnik.component';
-import { ShowKorisnikComponent } from './korisnik/show-korisnik/show-korisnik.component';
-import { AddEditKorisnikComponent } from './korisnik/add-edit-korisnik/add-edit-korisnik.component';
-import { SharedService } from './shared.service';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { RegisterComponent } from './components/register/register.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { HomeComponent } from './components/home/home.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { CommonModule } from '@angular/common';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MyListComponent } from './components/home/my-list/my-list.component';
+import { DiscoverComponent } from './components/home/discover/discover.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [			
+  declarations: [
     AppComponent,
-    FilmComponent,
-    ShowFilmComponent,
-    AddEditFilmComponent,
-    KorisnikComponent,
-    ShowKorisnikComponent,
-    AddEditKorisnikComponent,
-      LoginComponent,
-      SignupComponent
-   ],
+    LogInComponent,
+    RegisterComponent,
+    HomeComponent,
+    PagenotfoundComponent,
+    MyListComponent,
+    DiscoverComponent,
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    CommonModule,
+    NgbModule,
+    NoopAnimationsModule,
   ],
-  providers: [SharedService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
